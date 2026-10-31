@@ -141,6 +141,10 @@ class SingularityRenderer:
         if profiler:
             profiler.start_stage("black_hole")
 
+        if state.newly_absorbed_count > 0:
+            core_col = color_preset.get("core_color", (255, 255, 255))
+            self.event_horizon_renderer.trigger_ripple(self.config.rs, core_col)
+
         if self.config.show_black_hole:
             self.event_horizon_renderer.render(
                 self.trail_surface,

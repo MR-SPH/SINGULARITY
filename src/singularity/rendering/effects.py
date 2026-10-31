@@ -43,11 +43,51 @@ class BloomEffect:
         target_surface.blit(glow_full, (0, 0), special_flags=pygame.BLEND_ADD)
 
 
+class GravitationalRipple:
+    """An expanding relativistic spacetime ripple in the disk plane triggered by mass absorption."""
+
+    def __init__(
+        self,
+        start_radius: float,
+        max_radius: float,
+        speed: float,
+        color: Tuple[int, int, int] = (160, 230, 255)
+    ):
+        self.radius = start_radius
+        self.max_radius = max_radius
+        self.speed = speed
+        self.color = color
+        self.alive = True
+
+    def update(self, dt: float) -> None:
+        self.radius += self.speed * dt
+        if self.radius >= self.max_radius:
+            self.alive = False
+
+    @property
+    def progress(self) -> float:
+        return min(1.0, max(0.0, self.radius / self.max_radius))
+
+
 class EventHorizonRenderer:
     """Renders the central Schwarzschild black hole shadow and luminous relativistic photon ring."""
 
     def __init__(self):
         self._ring_cache: Dict[Tuple[int, int, Tuple[int, int, int]], pygame.Surface] = {}
+        self.ripples: list[GravitationalRipple] = []
+        self._ripple_cooldown: float = 0.0
+
+    def trigger_ripple(self, rs_world: float, color: Optional[Tuple[int, int, int]] = None) -> None:
+        """Trigger a relativistic gravitational wave ripple radiating outward across the disk plane."""
+        if self._ripple_cooldown > 0.0 or len(self.ripples) >= 6:
+            return
+        self._ripple_cooldown = 0.10
+        self.ripples.append(GravitationalRipple(
+            start_radius=rs_world * 1.05,
+            max_radius=rs_world * 4.6,
+            speed=rs_world * 4.6,
+            color=color or (160, 230, 255)
+        ))
 
     def _get_photon_ring_surface(
         self,
@@ -114,6 +154,32 @@ class EventHorizonRenderer:
 
         if rs_px <= 2:
             return
+
+        # 0. Render active gravitational wave ripples expanding across the inclined disk plane
+        dt_est = 1.0 / 60.0
+        self._ripple_cooldown = max(0.0, self._ripple_cooldown - dt_est)
+        pitch_factor = max(0.06, abs(float(np.sin(camera.pitch))))
+
+        alive_ripples = []
+        for rip in self.ripples:
+            rip.update(dt_est)
+            if rip.alive:
+                alive_ripples.append(rip)
+                rx = int(camera.get_projected_screen_radius(rip.radius))
+                ry = max(2, int(rx * pitch_factor))
+                alpha = int(max(0.0, min(220.0, (1.0 - rip.progress) * 200.0)))
+                if rx > 4 and alpha > 10:
+                    rw = rx * 2 + 6
+                    rh = ry * 2 + 6
+                    rip_surf = pygame.Surface((rw, rh), pygame.SRCALPHA)
+                    pygame.draw.ellipse(
+                        rip_surf,
+                        (*rip.color, alpha),
+                        pygame.Rect(3, 3, rx * 2, ry * 2),
+                        width=max(1, int(rx * 0.025))
+                    )
+                    surface.blit(rip_surf, (cx - rw // 2, cy - rh // 2), special_flags=pygame.BLEND_ADD)
+        self.ripples = alive_ripples
 
         # 1. Luminous photon sphere ring
         if show_photon_ring and photon_px > rs_px:

@@ -54,6 +54,9 @@ class HUDOverlay:
             (f"Quality: {config.quality_preset}", (160, 220, 255))
         ]
 
+        if state.cinematic_mode:
+            lines.insert(1, ("MODE: CINEMATIC AUTO-TOUR [C]", (120, 225, 255)))
+
         box_w = 275
         box_h = len(lines) * 20 + 16
         box_x = width - box_w - 15
@@ -74,7 +77,7 @@ class HUDOverlay:
         # ----------------------------------------------------
         # 2. Bottom Keyboard Shortcuts Bar
         # ----------------------------------------------------
-        bar_text = "[SPACE] Pause | [R] Reset | [F11] Fullscreen | [H] Toggle HUD | [+/-] Zoom | [Arrows/Mouse] Orbit | [1-5] Palettes"
+        bar_text = "[SPACE] Pause | [C] Cinematic Tour | [R] Reset | [F11] Fullscreen | [H] HUD | [1-5] Palettes | [Arrows/Mouse] Orbit"
         bar_surf = self._font_body.render(bar_text, True, (140, 155, 175))
         bx = (width - bar_surf.get_width()) // 2
         by = height - 26

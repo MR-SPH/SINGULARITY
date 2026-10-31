@@ -155,3 +155,23 @@ class TestGravitationalLensing:
         deflected = deflect_far_disk_screen_coords(coords, center, 60.0, is_far, pitch_angle=0.5, intensity=1.0)
         # Should be deflected upward (lower Y in screen coords)
         assert deflected[0, 1] < coords[0, 1]
+
+
+class TestGravitationalRipples:
+    """Validate relativistic gravitational wave ripples generated on mass absorption."""
+
+    def test_ripple_expansion_and_lifecycle(self):
+        from singularity.rendering.effects import GravitationalRipple, EventHorizonRenderer
+        renderer = EventHorizonRenderer()
+        renderer.trigger_ripple(rs_world=12.0)
+        assert len(renderer.ripples) == 1
+
+        ripple = renderer.ripples[0]
+        initial_radius = ripple.radius
+        assert initial_radius > 12.0
+        assert ripple.alive
+        assert ripple.progress < 0.5
+
+        # Advance ripple by update step
+        ripple.update(0.5)
+        assert ripple.radius > initial_radius

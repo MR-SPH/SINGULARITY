@@ -81,6 +81,14 @@ class SingularityEngine:
         pygame.image.save(self.screen, file_path)
         self.state.notify(f"Screenshot Captured: {os.path.basename(file_path)}")
 
+    def toggle_cinematic_mode(self) -> None:
+        """Toggle autonomous 360-degree cinematic flyby orbit."""
+        self.state.cinematic_mode = not self.state.cinematic_mode
+        if self.state.cinematic_mode:
+            self.state.notify("Cinematic Auto-Tour: ACTIVE [Press C to stop]")
+        else:
+            self.state.notify("Cinematic Auto-Tour: STOPPED")
+
     def _cycle_typography_mode(self) -> None:
         modes = list(TypographyMode)
         curr_idx = 0
@@ -145,6 +153,8 @@ class SingularityEngine:
                     self._cycle_typography_mode()
                 elif event.key == pygame.K_q:
                     self._cycle_quality_preset()
+                elif event.key == pygame.K_c:
+                    self.toggle_cinematic_mode()
                 elif event.key == pygame.K_1:
                     self.config.color_preset = "solar_orange"
                     self.state.notify("Palette: Solar Orange")
@@ -171,6 +181,9 @@ class SingularityEngine:
                 if event.button in (1, 3):  # Left or Right drag
                     self.state.is_mouse_dragging = True
                     self.state.last_mouse_pos = event.pos
+                    if self.state.cinematic_mode:
+                        self.state.cinematic_mode = False
+                        self.state.notify("Manual Camera Control (Auto-Tour Paused)")
                 elif event.button == 4:  # Wheel up
                     self.config.camera_zoom = min(2.5, self.config.camera_zoom + 0.08)
                     self.renderer.camera.target_zoom = self.config.camera_zoom
@@ -217,6 +230,18 @@ class SingularityEngine:
 
             # Physics simulation step
             self.simulation.step(dt_clamped)
+
+            # Cinematic auto-tour camera dynamics
+            if self.state.cinematic_mode:
+                self.state.cinematic_timer += dt_clamped
+                t = self.state.cinematic_timer
+                # Continuous 360-degree orbital rotation
+                self.renderer.camera.target_yaw += dt_clamped * 0.22
+                # Smooth sinusoidal pitch oscillation between ~0.20 rad (edge-on) and ~1.15 rad (face-on)
+                import numpy as np
+                self.renderer.camera.target_pitch = 0.68 + 0.48 * float(np.sin(t * 0.18))
+                # Subtle orbital breathing zoom
+                self.renderer.camera.target_zoom = 1.05 + 0.20 * float(np.cos(t * 0.12))
 
             # Camera smoothing
             self.renderer.camera.update(dt_clamped)

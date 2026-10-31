@@ -81,5 +81,6 @@ class BlackHoleSimulation:
         self.state.frame_count += 1
 
         active_count, absorbed_count = self.particle_system.update(effective_dt, self.state.elapsed_time)
+        self.state.newly_absorbed_count = absorbed_count
         return active_count, absorbed_count
 

@@ -167,7 +167,8 @@ class ControlPanel:
             UIButton(pygame.Rect(x + (q_w + 5) * 2, 195, q_w, 26), "High", lambda: self._apply_quality("HIGH")),
             UIButton(pygame.Rect(x, 240, w, 30), "Save Configuration", self._save_config_action),
             UIButton(pygame.Rect(x, 280, w, 30), "Reset Simulation", self._reset_action),
-            UIButton(pygame.Rect(x, 320, w, 30), "Randomize Scene", self._randomize_action)
+            UIButton(pygame.Rect(x, 320, w, 30), "Randomize Scene", self._randomize_action),
+            UIButton(pygame.Rect(x, 360, w, 30), "Cinematic Tour [C]", self._toggle_cinematic)
         ]
 
         # Toggle Panel Button (small tab on the right edge of panel)
@@ -226,6 +227,13 @@ class ControlPanel:
     def _randomize_action(self) -> None:
         self.state.randomize_requested = True
         self.state.notify("Scene Randomized")
+
+    def _toggle_cinematic(self) -> None:
+        self.state.cinematic_mode = not self.state.cinematic_mode
+        if self.state.cinematic_mode:
+            self.state.notify("Cinematic Auto-Tour: ACTIVE [Press C to stop]")
+        else:
+            self.state.notify("Cinematic Auto-Tour: STOPPED")
 
     def handle_event(self, event: pygame.event.Event) -> bool:
         """Handle mouse clicks and drags on UI elements. Returns True if consumed."""

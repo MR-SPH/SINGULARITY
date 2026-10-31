@@ -20,6 +20,13 @@ class EngineState:
     target_yaw: float = 0.0
     target_zoom: float = 1.0
 
+    # Cinematic auto-tour mode
+    cinematic_mode: bool = False
+    cinematic_timer: float = 0.0
+
+    # Astrophysical event telemetry
+    newly_absorbed_count: int = 0
+
     # Interaction & telemetry
     ui_visible: bool = True
     active_slider: Optional[str] = None

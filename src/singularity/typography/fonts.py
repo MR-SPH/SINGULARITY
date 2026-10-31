@@ -111,8 +111,9 @@ class GlyphCache:
             return self._base_cache[key]
 
         font = self.font_manager.get_font(size_q)
+        shaped_text = shape_arabic(raw_text)
         try:
-            surface = font.render(raw_text, True, col_q)
+            surface = font.render(shaped_text, True, col_q)
         except Exception:
             surface = font.render("?", True, col_q)
 

@@ -1,87 +1,104 @@
 # SINGULARITY // Arabic Gravitational Art Engine
+### Relativistic Black Hole Generative-Art Simulation in Arabic Typography
 
-[![CI](https://github.com/your-username/singularity/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/singularity/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Pytest: 40 Passed](https://img.shields.io/badge/tests-40%20passed-brightgreen.svg)]()
+[![Open Source](https://img.shields.io/badge/Open%20Source-%E2%99%A5-red.svg)](LICENSE)
+[![اقرأ بالعربية](https://img.shields.io/badge/Language-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-green.svg)](README_AR.md)
 
-> **SINGULARITY** is an interactive, real-time generative-art engine and relativistic black hole simulator that renders spacetime curvature, accretion dynamics, and gravitational lensing primarily through **Arabic typography**.
+> **SINGULARITY** is an interactive, real-time generative-art engine and relativistic astrophysical simulation that renders curved spacetime, accretion disk dynamics, and gravitational lensing primarily through **Arabic typography** as the visual matter.
+
+[**📖 اقرأ دليل التوثيق الكامل باللغة العربية (Read in Arabic)**](README_AR.md)
+
+---
+
+## Table of Contents
+1. [Overview](#overview)
+2. [Astrophysical & Mathematical Foundations](#astrophysical--mathematical-foundations)
+3. [Arabic Typography System](#arabic-typography-system)
+4. [Key Features & Visual Effects](#key-features--visual-effects)
+5. [Prerequisites & Environment](#prerequisites--environment)
+6. [Step-by-Step Installation (Windows & Linux)](#step-by-step-installation)
+7. [Running & CLI Usage](#running--cli-usage)
+8. [Interactive Controls & HUD](#interactive-controls--hud)
+9. [Automated Testing](#automated-testing)
+10. [License](#license)
 
 ---
 
 ## Overview
 
-Rather than relying on conventional textured polygons or wireframe meshes, **SINGULARITY** constructs the celestial geometry of a black hole from Arabic character particles. Characters rotate, plunge, and stretch in accordance with relativistic gravitational dynamics, aligning with orbital stream lines like luminous cosmic calligraphy.
+Rather than relying on conventional textured polygons or wireframe meshes, **SINGULARITY** constructs the celestial geometry of a Schwarzschild black hole from thousands of active **Arabic characters**. Characters rotate, plunge, and stretch in accordance with relativistic gravitational dynamics, aligning with orbital stream lines like luminous cosmic calligraphy.
 
-The engine features physically grounded approximations of general relativistic effects, including the **Innermost Stable Circular Orbit (ISCO = 3 Rs)**, **Relativistic Doppler Beaming**, **Schwarzschild Event Horizon absorption**, and **Screen-Space Gravitational Lensing**.
-
----
-
-## Key Features
-
-- **Relativistic Astrophysics Engine**:
-  - **Schwarzschild Event Horizon ($R_s = 2GM/c^2$)**: True consuming boundary where matter is pulled across the horizon into the singularity.
-  - **Paczyński-Wiita Potential**: Reproduces the exact general relativistic ISCO at $3 R_s$, driving matter into sudden relativistic plunge.
-  - **Relativistic Doppler Beaming**: Recreates the signature asymmetry seen in Event Horizon Telescope (EHT) imagery — matter approaching the observer is blazingly amplified and bluer, while receding matter is dimmer and redshifted.
-  - **Gravitational Lensing & Photon Ring**: Background stars bend around the black hole, producing Einstein arcs and magnification.
-
-- **Arabic Typography System**:
-  - **Pure Alphabet Particle Default**: Features all 28 traditional Arabic letters as distinct swirling stellar particles.
-  - **Tangential Streamline Alignment**: Glyphs dynamically align their orientation with the local orbital velocity vector, creating a harmonious liquid plasma flow.
-  - **Contextual Shaping & BiDi Layout**: Proper RTL glyph connectivity powered by `arabic-reshaper` and `python-bidi`.
-  - **Extended Modes**: Switch instantly between Letters, Cosmological Words (*جاذبية، أفق الحدث، ثقب أسود، تفرد*), Philosophical Verses, and Mixed modes.
-
-- **Cinematic Multi-Pass Rendering**:
-  - **Phosphorescent Decay Trails**: Hardware-accelerated motion blur with `BLEND_SUB`.
-  - **Multi-Layer 3D Depth**: True depth-sorted rendering separating background disk particles, central shadow occlusion, and foreground disk particles.
-  - **Additive Bloom Glow**: Multi-pass downsampled bloom creating realistic luminosity around the inner disk and photon sphere.
-  - **Cosmic Starfield**: Depth-layered starfield with scintillation and relativistic deflection.
-
-- **Hardware-Aware Real-Time Performance**:
-  - Sustains **60 FPS** on dual-core CPUs with integrated graphics through a **2-tier quantized glyph cache** and **Struct-of-Arrays (SoA)** NumPy vectorization.
-  - 3 Performance presets: `LOW`, `MEDIUM`, `HIGH`.
-
-- **Interactive Telemetry HUD**:
-  - Collapsible 4-tab glassmorphic dock (*Physics, Visuals, Layers, System*).
-  - Real-time gauges: FPS, frame time, active particle count, total absorbed matter counter.
+The visual identity is cinematic, scientific, and elegant—deliberately avoiding generic green terminal clichés. The simulation achieves **60 FPS** on standard hardware through vectorized Struct-of-Arrays (SoA) particle pools and a quantized glyph cache.
 
 ---
 
-## Color Presets
+## Astrophysical & Mathematical Foundations
 
-| Preset | Inspiration | Primary Palette |
-| :--- | :--- | :--- |
-| **Solar Orange** | Event Horizon Telescope (EHT) / M87* | Pure White &rarr; Brilliant Gold &rarr; Solar Orange &rarr; Deep Crimson |
-| **Deep Blue** | Cherenkov Quasar & Active Galactic Nuclei | Cyan White &rarr; Electric Blue &rarr; Midnight Azure &rarr; Deep Space |
-| **Purple Nebula** | Cosmic Ultraviolet & Gravitational Jet | Pearl White &rarr; Radiant Magenta &rarr; Nebula Violet &rarr; Obsidian |
-| **Monochrome** | Scientific Gravitational Minimalist | Pure White &rarr; High-Contrast Greyscale &rarr; Pitch Black |
-| **Emerald** | Synchrotron Radio Emission | Mint White &rarr; Electric Emerald &rarr; Jade Green &rarr; Deep Forest |
+The simulation implements real general-relativistic approximations:
+
+### 1. Unified Spatial Scale ($R_s$)
+All scene entities adhere to a single unified scale governed by the **Schwarzschild radius ($R_s$)**:
+* **Event Horizon:** Fixed at $1.0 \, R_s$ (consuming boundary).
+* **Photon Sphere:** Positioned at $1.5 \, R_s$ where unstable circular photon orbits create the luminous ring.
+* **Innermost Stable Circular Orbit (ISCO):** Positioned at $3.0 \, R_s$. Matter crossing inside ISCO plunges rapidly into the event horizon.
+* **Accretion Disk:** Extends from $3.0 \, R_s$ to $20.0 \, R_s$.
+* **Vertical Scale Height:** Follows physical gas disk geometry $H(r) = 0.03 \, r$.
+
+### 2. Shakura-Sunyaev Temperature Profile
+Disk emission and radiation follow the standard thin-disk model:
+$$T(r) = T_{\text{peak}} \cdot \left(\frac{r}{r_{\text{in}}}\right)^{-3/4} \left[1 - \sqrt{\frac{r_{\text{in}}}{r}}\right]^{1/4}$$
+Reaching peak temperature at $r \approx 4.08 \, R_s$, smoothly transitioning from incandescent white-gold core to solar orange and deep crimson rim.
+
+### 3. Paczyński-Wiita Orbital Dynamics
+Pseudo-Newtonian relativistic angular velocity reproduces circular orbits:
+$$\Omega(r) = \frac{\sqrt{GM}}{r^{1/2}(r - R_s)}$$
+Causing characters near the horizon to whip in tight, accelerating relativistic spirals.
+
+### 4. Relativistic Doppler Beaming
+Matter orbiting toward the line of sight is amplified by the relativistic beaming factor $\delta^3$:
+$$\delta = \frac{1}{\gamma (1 - \beta \cos\theta)}$$
+Creating the signature Event Horizon Telescope (EHT) brightness asymmetry.
+
+### 5. Gravitational Lensing & Far-Disk Elevation
+Light from the far side of an inclined accretion disk bends over the top and bottom of the event horizon, rendering the iconic halo arc.
+
+### 6. Gravitational Wave Ripples
+Whenever matter crosses the event horizon, a quasinormal spacetime metric perturbation expands outward across the disk plane, dissipating at relativistic speeds.
 
 ---
 
-## Interactive Controls
+## Arabic Typography System
 
-| Control | Action |
-| :--- | :--- |
-| **Left / Right Mouse Drag** | Orbit camera yaw and pitch in 3D |
-| **Mouse Wheel / `+` / `-`** | Zoom in / Zoom out |
-| **Arrow Keys** | Smooth keyboard camera orbit |
-| **`SPACE`** | Pause / Resume simulation |
-| **`H`** | Toggle HUD & Control Panel visibility |
-| **`1` - `5`** | Switch Color Presets (*Solar, Blue, Purple, Mono, Emerald*) |
-| **`T`** | Cycle Typography Mode (*Letters &rarr; Words &rarr; Phrases &rarr; Mixed*) |
-| **`Q`** | Cycle Performance Quality (*LOW &rarr; MEDIUM &rarr; HIGH*) |
-| **`R`** | Reset simulation |
-| **`P` or `F12`** | Capture high-resolution screenshot to `screenshots/` |
-| **`F11`** | Toggle Fullscreen |
-| **`ESC`** | Exit Application |
+* **28 Alphabet Glyphs by Default:** The core plasma is composed of pure isolated Arabic letters.
+* **Contextual Reshaping & BiDi Layout:** Uses `arabic-reshaper` and `python-bidi` for full right-to-left glyph connectivity when rendering words and phrases.
+* **Tangential Flow Alignment:** Character rotation angles dynamically align with orbital velocity streamlines:
+  $$\theta_{\text{flow}} = 90^\circ + \arctan2(v_z, v_x)$$
+* **Typography Modes:**
+  * **Letters (`letters`):** All 28 Arabic alphabet characters.
+  * **Words (`words`):** Cosmological terms (*جاذبية، أفق الحدث، ثقب أسود، تفرد، نور، سرمدي، زمكان*).
+  * **Phrases (`phrases`):** Astronomical and philosophical verses (*في فلك يسبحون، والنجم إذا هوى*).
+  * **Mixed (`mixed`):** A dynamic composite stream.
 
 ---
 
-## Installation & Quick Start
+## Key Features & Visual Effects
+
+* **Cinematic Auto-Tour Mode (`[C]`):** Hands-free autonomous orbital camera that glides 360° around the black hole while smoothly oscillating between face-on circular view and edge-on lensing halo.
+* **Gravitational Wave Ripples:** Relativistic ripple emissions upon particle absorption.
+* **Glassmorphic Telemetry HUD:** Real-time diagnostics for FPS, absorbed matter, active particles, and parameter sliders.
+* **5 Color Presets:** Solar Orange, Deep Blue, Purple Nebula, Monochrome, and Emerald Singularity.
+* **Additive Multi-Pass Bloom & Phosphorescent Trails:** Smooth downscaled glow and motion blur.
+
+---
+
+## Step-by-Step Installation
 
 ### 1. Requirements
-- Python 3.11 or higher (Python 3.14 fully supported).
-- Windows, Linux, or macOS.
+* Python 3.11 or higher (Python 3.14 fully supported).
+* Windows, Linux, or macOS.
 
 ### 2. Setup
 ```bash
@@ -90,83 +107,71 @@ git clone https://github.com/your-username/singularity.git
 cd singularity
 
 # Create and activate virtual environment
+# Windows:
 python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 
-# On Windows:
-.\.venv\Scripts\activate
-# On Linux / macOS:
+# Linux / macOS:
+python3 -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Running
+---
+
+## Running & CLI Usage
+
+### Launch Interactive Engine
 ```bash
-# Launch interactive application
 python main.py
-
-# Launch with specific options
-python main.py --preset deep_blue --quality HIGH
-
-# Launch in fullscreen
-python main.py --fullscreen
 ```
-
-### 4. Running Headless Benchmark
+Or as a package:
 ```bash
-python main.py --benchmark 180 --quality MEDIUM
+python -m singularity
 ```
+
+### CLI Arguments
+| Argument | Description | Example |
+| :--- | :--- | :--- |
+| `--preset` | Color preset | `python main.py --preset deep_blue` |
+| `--quality` | Quality preset (`LOW`, `MEDIUM`, `HIGH`) | `python main.py --quality HIGH` |
+| `--mode` | Typography mode (`letters`, `words`, `phrases`, `mixed`) | `python main.py --mode phrases` |
+| `--particles` | Initial particle pool size | `python main.py --particles 1800` |
+| `--fullscreen` | Launch in fullscreen | `python main.py --fullscreen` |
+| `--benchmark` | Run headless benchmark | `python main.py --benchmark 120` |
+
+---
+
+## Interactive Controls & HUD
+
+| Key / Input | Action |
+| :--- | :--- |
+| **Mouse Left Drag** | Orbit camera 360° pitch and yaw |
+| **Mouse Wheel / `+` / `-`** | 3D Perspective Zoom In / Out |
+| **`C`** | **Toggle Cinematic Auto-Tour Mode** |
+| **`Space`** | Pause / Resume simulation |
+| **`H`** | Toggle HUD & Control Panel |
+| **`R`** | Reset simulation |
+| **`T`** | Cycle Typography Mode (Letters &rarr; Words &rarr; Phrases &rarr; Mixed) |
+| **`Q`** | Cycle Quality Presets (LOW &rarr; MEDIUM &rarr; HIGH) |
+| **`1` - `5`** | Switch Color Presets |
+| **`P` or `F12`** | Capture high-resolution screenshot to `screenshots/` |
+| **`F11`** | Toggle Fullscreen |
+| **`Esc`** | Exit application |
 
 ---
 
 ## Automated Testing
 
-Execute the comprehensive test suite with `pytest`:
+Run the full automated test suite (40 unit tests):
 ```bash
 pytest
 ```
-All 25 automated tests validate relativistic velocity curves, ISCO instability, Doppler beaming factors, particle pool invariants, Arabic text shaping, and JSON configuration validation.
-
----
-
-## Architecture Overview
-
-```
-singularity/
-├── main.py                  # CLI and application entry point
-├── pyproject.toml           # Package configuration & test rules
-├── requirements.txt         # Pinned runtime dependencies
-├── assets/
-│   ├── fonts/               # Arabic OpenType/TrueType fonts
-│   └── presets/             # Saved configuration templates
-├── src/singularity/
-│   ├── core/                # Engine loop, state machine, and JSON config
-│   ├── physics/             # Relativistic potential, ISCO, Doppler, and lensing
-│   ├── typography/          # Arabic reshaping, BiDi, and quantized glyph cache
-│   ├── particles/           # Vectorized Struct-of-Arrays particle pool & emitter
-│   ├── rendering/           # Camera, starfield, effects, and multi-pass pipeline
-│   ├── ui/                  # Collapsible glassmorphic dock & telemetry HUD
-│   └── utilities/           # Math utilities, profiler, and color interpolation
-├── tests/                   # 25 automated unit tests
-└── docs/                    # Architectural and developer documentation
-```
-
----
-
-## Roadmap
-
-- [x] Vectorized Struct-of-Arrays particle pool.
-- [x] Relativistic Doppler beaming and Paczyński-Wiita ISCO modeling.
-- [x] Contextual Arabic typography with stream-aligned orientation.
-- [x] Discrete 2-tier glyph cache for 60 FPS performance on dual-core hardware.
-- [ ] Add Kerr (rotating) black hole frame-dragging / ergosphere visualization.
-- [ ] Implement audio-reactive gravitational pulse spectrum analyzer.
-- [ ] WebAssembly / WebGL export for browser execution.
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details. Open source and community friendly.

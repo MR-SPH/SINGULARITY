@@ -88,3 +88,11 @@ class TestGlyphCache:
         assert surf.get_width() > 0
         assert surf.get_height() > 0
 
+    def test_glyph_surface_retrieval_with_connected_word(self):
+        fm = FontManager()
+        cache = GlyphCache(fm)
+        surf_word = cache.get_rotated_glyph("جاذبية", size=28, color_rgb=(255, 220, 100), angle_deg=0.0)
+        assert isinstance(surf_word, pygame.Surface)
+        assert surf_word.get_width() > 0
+        assert surf_word.get_height() > 0
+
