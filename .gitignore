@@ -20,6 +20,13 @@ dist/
 build/
 *.egg-info/
 
+# Documentation & Prompts (ignored for remote push as requested)
+README.md
+LICENSE
+GITHUB_AI_PROMPT.md
+docs/
+*.md
+
 # IDE / OS
 .vscode/
 .idea/
