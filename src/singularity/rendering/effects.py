@@ -1,6 +1,6 @@
 """Visual effects: Additive bloom, motion trails, and physically proportioned event horizon."""
 
-from typing import Tuple, Dict, Any
+from typing import Optional, Tuple, Dict, Any
 import numpy as np
 import pygame
 
