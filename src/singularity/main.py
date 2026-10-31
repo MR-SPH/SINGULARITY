@@ -7,6 +7,11 @@ import argparse
 import sys
 import os
 
+# Auto-resolve parent src directory when executed directly as a script
+src_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
 from singularity.core.config import EngineConfig, COLOR_PRESETS, QUALITY_PRESETS
 from singularity.core.engine import SingularityEngine
 from singularity.core.simulation import BlackHoleSimulation
@@ -94,3 +99,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
