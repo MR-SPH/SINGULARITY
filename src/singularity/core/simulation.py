@@ -32,11 +32,16 @@ class BlackHoleSimulation:
         self.state.notify("Simulation Reset")
 
     def randomize(self) -> None:
-        """Randomize celestial parameters for generative exploration."""
-        self.config.black_hole_mass = float(random.randint(2500, 7500))
-        self.config.event_horizon_radius = float(random.randint(45, 110))
-        self.config.rotation_speed = round(random.uniform(0.6, 1.8), 2)
-        self.config.turbulence_factor = round(random.uniform(0.04, 0.16), 3)
+        """Randomize celestial parameters for generative exploration while preserving unified Rs scaling."""
+        self.config.rs = float(random.randint(8, 18))
+        self.config.event_horizon_radius = 1.0 * self.config.rs
+        self.config.photon_sphere_radius = 1.5 * self.config.rs
+        self.config.isco_radius = 3.0 * self.config.rs
+        self.config.disk_inner_radius = 3.0 * self.config.rs
+        self.config.disk_outer_radius = float(random.randint(16, 22)) * self.config.rs
+        self.config.black_hole_mass = self.config.rs * float(random.randint(280, 420))
+        self.config.rotation_speed = round(random.uniform(0.7, 1.6), 2)
+        self.config.turbulence_factor = round(random.uniform(0.03, 0.09), 3)
 
         palette_keys = list(COLOR_PRESETS.keys())
         self.config.color_preset = random.choice(palette_keys)
