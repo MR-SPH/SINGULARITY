@@ -1,6 +1,7 @@
 """Font discovery, Arabic font loading, and high-performance pre-rendered glyph cache."""
 
 import os
+import sys
 from typing import Dict, Tuple, Optional, List
 import pygame
 from singularity.typography.shaping import shape_arabic
@@ -9,15 +10,40 @@ from singularity.typography.shaping import shape_arabic
 class FontManager:
     """Discovers Arabic fonts and maintains loaded pygame font instances at various sizes."""
 
-    DEFAULT_FONT_SEARCH_PATHS = [
-        os.path.join(os.path.dirname(__file__), "..", "..", "..", "assets", "fonts", "segoeui.ttf"),
-        os.path.join(os.path.dirname(__file__), "..", "..", "..", "assets", "fonts", "tahoma.ttf"),
-        "C:\\Windows\\Fonts\\segoeui.ttf",
-        "C:\\Windows\\Fonts\\tahoma.ttf",
-        "C:\\Windows\\Fonts\\arial.ttf",
-        "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf",
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-    ]
+    @staticmethod
+    def _get_candidate_font_paths() -> List[str]:
+        candidates: List[str] = []
+
+        # 1. Check PyInstaller bundle dir if packaged
+        if hasattr(sys, "_MEIPASS"):
+            candidates.append(os.path.join(sys._MEIPASS, "assets", "fonts", "segoeui.ttf"))
+            candidates.append(os.path.join(sys._MEIPASS, "assets", "fonts", "tahoma.ttf"))
+
+        # 2. Check relative to this source file
+        src_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+        candidates.append(os.path.join(src_root, "assets", "fonts", "segoeui.ttf"))
+        candidates.append(os.path.join(src_root, "assets", "fonts", "tahoma.ttf"))
+
+        # 3. Check relative to current working directory
+        candidates.append(os.path.join(os.getcwd(), "assets", "fonts", "segoeui.ttf"))
+        candidates.append(os.path.join(os.getcwd(), "assets", "fonts", "tahoma.ttf"))
+
+        # 4. Windows dynamic system fonts
+        windir = os.environ.get("WINDIR", os.environ.get("SYSTEMROOT", "C:\\Windows"))
+        win_fonts = os.path.join(windir, "Fonts")
+        candidates.append(os.path.join(win_fonts, "segoeui.ttf"))
+        candidates.append(os.path.join(win_fonts, "tahoma.ttf"))
+        candidates.append(os.path.join(win_fonts, "arial.ttf"))
+
+        # 5. Linux / macOS system fonts
+        candidates.extend([
+            "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            "/Library/Fonts/Arial.ttf",
+            "/System/Library/Fonts/Supplemental/Arial.ttf",
+        ])
+
+        return candidates
 
     def __init__(self, explicit_font_path: Optional[str] = None):
         if not pygame.font.get_init():
@@ -30,7 +56,7 @@ class FontManager:
         if explicit_path and os.path.isfile(explicit_path):
             return explicit_path
 
-        for candidate in self.DEFAULT_FONT_SEARCH_PATHS:
+        for candidate in self._get_candidate_font_paths():
             norm_path = os.path.normpath(candidate)
             if os.path.isfile(norm_path):
                 return norm_path

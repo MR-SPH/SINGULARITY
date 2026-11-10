@@ -29,6 +29,9 @@ class SingularityEngine:
         self.state = EngineState()
         self.profiler = FrameProfiler()
 
+        # Ensure user directories exist
+        os.makedirs("screenshots", exist_ok=True)
+
         # Display window
         flags = pygame.DOUBLEBUF | pygame.RESIZABLE
         if self.config.fullscreen:
