@@ -19,24 +19,24 @@
 ## Visual Showcase / معرض الصور
 
 <p align="center">
-  <img src="https://github.com/MR-SPH/SINGULARITY/raw/main/banner_hero.png" alt="SINGULARITY banner" width="1000" />
+  <img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/banner_hero.png" alt="SINGULARITY banner" width="1000" />
 </p>
 
 <table>
   <tr>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/preset_solar_orange.png" alt="Solar Orange preset" width="300" /><br><sub>Solar Orange</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/preset_deep_blue.png" alt="Deep Blue preset" width="300" /><br><sub>Deep Blue</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/preset_purple_nebula.png" alt="Purple Nebula preset" width="300" /><br><sub>Purple Nebula</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/preset_solar_orange.png" alt="Solar Orange preset" width="300" /><br><sub>Solar Orange</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/preset_deep_blue.png" alt="Deep Blue preset" width="300" /><br><sub>Deep Blue</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/preset_purple_nebula.png" alt="Purple Nebula preset" width="300" /><br><sub>Purple Nebula</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/preset_emerald_singularity.png" alt="Emerald Singularity preset" width="300" /><br><sub>Emerald Singularity</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/blue_with_ui.png" alt="Blue preset with UI" width="300" /><br><sub>Deep Blue + HUD</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/hud_telemetry.png" alt="HUD telemetry" width="300" /><br><sub>Telemetry HUD</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/preset_emerald_singularity.png" alt="Emerald Singularity preset" width="300" /><br><sub>Emerald Singularity</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/blue_with_ui.png" alt="Blue preset with UI" width="300" /><br><sub>Deep Blue + HUD</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/hud_telemetry.png" alt="HUD telemetry" width="300" /><br><sub>Telemetry HUD</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/max.png" alt="Max settings" width="300" /><br><sub>High-Fidelity View</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/pick.png" alt="Pick view" width="300" /><br><sub>Focus View</sub></td>
-    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/preset_solar_orange.png" alt="Solar Orange detail" width="300" /><br><sub>Solar Orange Detail</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/max.png" alt="Max settings" width="300" /><br><sub>High-Fidelity View</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/pick.png" alt="Pick view" width="300" /><br><sub>Focus View</sub></td>
+    <td align="center"><img src="https://github.com/MR-SPH/SINGULARITY/raw/main/screenshots/preset_solar_orange.png" alt="Solar Orange detail" width="300" /><br><sub>Solar Orange Detail</sub></td>
   </tr>
 </table>
 
@@ -48,7 +48,7 @@
 
 # 🇸🇦 التوثيق باللغة العربية
 
-> **SINGULARITY** هو محرك فن توليدي فلكي ومحاكاة نسبية في الوقت الحقيقي، يُصيّر الزمكان المنحني، وحركة قرص التزويد، وتشتت الضوء عبر الحروف العربية.
+> **SINGULARITY** هو محرك فن توليدي فلكي ومحاكاة نسبية في الوقت الحقيقي، يُصيّر الزمكان المنحني، وحركة قرص التزويد ...
 
 ---
 
@@ -69,9 +69,9 @@
 
 ## نظرة عامة
 
-بدلاً من الاعتماد على الأشكال الهندسية التقليدية أو المضلعات المكسوة بالخامات، يقوم **SINGULARITY** ببناء الشكل الفلكي من آلاف الحروف العربية النشطة، كل حرف يندمج في تدفق مداري يشبه قرص التزويد حول ثقب أسود.
+بدلاً من الاعتماد على الأشكال الهندسية التقليدية أو المضلعات المكسوة بالخامات، يقوم **SINGULARITY** ببناء الشكل ...
 
-يتميز المحرك بأسلوب بصري سينمائي يبتعد عن الشاشات الطرفية النمطية، ويحقق أداءً سلساً بمعدل **60 إطاراً في الثانية** على معظم الأجهزة العادية من خلال استخدام مجموعات الجسيمات المتجهية (SoA) وذاكرة تخزين متقدمة.
+يتميز المحرك بأسلوب بصري سينمائي يبتعد عن الشاشات الطرفية النمطية، ويحقق أداءً سلساً بمعدل **60 إطاراً في الثانية** على الأجهزة العادية ...
 
 ---
 
@@ -90,12 +90,12 @@
 ### 2. التوزيع الحراري الشعاعي (شاكورا-سونيايف)
 يتبع إشعاع القرص نموذج القرص الرقيق الفيزيائي القياسي:
 $$T(r) = T_{\text{peak}} \cdot \left(\frac{r}{r_{\text{in}}}\right)^{-3/4} \left[1 - \sqrt{\frac{r_{\text{in}}}{r}}\right]^{1/4}$$
-تصل درجة الحرارة ذروتها عند $r \approx 4.08 \, R_s$ مع تدرج لوني ينتقل من الأبيض الساطع في المركز إلى البرتقالي الشمسي والقرمزي العميق في الأطراف.
+تصل درجة الحرارة ذروتها عند $r \approx 4.08 \, R_s$ مع تدرج لوني ينتقل من الأبيض الساطع في المركز إلى البرتقالي الشمسي ...
 
 ### 3. الديناميكا المدارية لباتشينسكي-فيتا
 تُحاكي السرعة الزاوية المدارية النسبية باستخدام جهد باتشينسكي-فيتا:
 $$\Omega(r) = \frac{\sqrt{GM}}{r^{1/2}(r - R_s)}$$
-مما يمنح الحروف القريبة من الأفق حركة حلزونية متسارعة تلتف بعنف حول المركز، بينما تدور الأطراف الخارجية بهدوء أكبر.
+مما يمنح الحروف القريبة من الأفق حركة حلزونية متسارعة تلتف بعنف حول المركز، بينما تدور الأطراف الخارجية بهدوء ...
 
 ### 4. تأثير دوبلر النسبي (Doppler Beaming)
 المادة التي تدور باتجاه زاوية رؤية الكاميرا تتضاعف إضاءتها وفق معامل التعزيز النسبي $\delta^3$:
@@ -106,7 +106,7 @@ $$\delta = \frac{1}{\gamma (1 - \beta \cos\theta)}$$
 ينحني ضوء النجوم الخلفية والجانب البعيد من القرص بفعل انحناء الزمكان، ليظهر كقوس مضيء أعلى وأسفل الثقب الأسود.
 
 ### 6. تموجات أمواج الجاذبية (Gravitational Wave Ripples)
-عند ابتلاع أي جسيم وعبروره أفق الحدث ($r \le R_s$)، ينطلق نبض تموجي نسبي كقطع ناقص ثلاثي الأبعاد متوافق مع زاوية المراقبة.
+عند ابتلاع أي جسيم وعبروره أفق الحدث ($r \le R_s$)، ينطلق نبض تموجي نسبي كقطع ناقص ثلاثي الأبعاد متوافق مع زاوية ...
 
 ---
 
@@ -126,9 +126,9 @@ $$\delta = \frac{1}{\gamma (1 - \beta \cos\theta)}$$
 
 ## الميزات البصرية والحركية
 
-* **نمط الجولة السينمائية التلقائية (`[C]`):** كاميرا ذاتية القيادة تدور 360 درجة حول الثقب الأسود مع تذبذب زاوية الرؤية.
+* **نمط الجولة السينمائية التلقائية (`[C]`):** كاميرا ذاتية القيادة تدور 360 درجة حول الثقب الأسود مع تذبذب زاوية ...
 * **تموجات أمواج الجاذبية:** نبضات دائرية متوهجة تنبعث عند ابتلاع المادة.
-* **لوحة قياسات تفاعلية (Glassmorphic HUD):** متابعة فورية للإطارات في الثانية (FPS)، وزمن الإطار، ونسبة الجسيمات المبتلعة.
+* **لوحة قياسات تفاعلية (Glassmorphic HUD):** متابعة فورية للإطارات في الثانية (FPS)، وزمن الإطار، ونسبة الجسيمات المبتلعة ...
 * **5 لوحات ألوان متكاملة:** البرتقالي الشمسي، الأزرق العميق، السديم الأرجواني، الأبيض الأحادي، والزمرد الكوني.
 * **توهج متراكم متعدد المراحل (Additive Bloom):** لمعان وانعكاسات ضوئية بدون هبوط في الأداء.
 
